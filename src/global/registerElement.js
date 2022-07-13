@@ -1,4 +1,6 @@
 import {
+  ElAvatar,
+  ElCol,
   ElContainer,
   ElDropdown,
   ElHeader,
@@ -7,10 +9,14 @@ import {
   ElMenu,
   ElMenuItem,
   ElMenuItemGroup,
+  ElRadioButton,
+  ElRadioGroup,
+  ElRow,
   ElScrollbar,
   ElTable,
 } from "element-plus";
 import "element-plus/dist/index.css";
+import "element-plus/theme-chalk/display.css";
 import * as Icons from "@element-plus/icons-vue";
 
 const components = [
@@ -29,6 +35,11 @@ const components = [
   ElTable,
   ElTable.TableColumn,
   ElIcon,
+  ElRow,
+  ElCol,
+  ElAvatar,
+  ElRadioGroup,
+  ElRadioButton,
 ];
 
 export default function (app) {
