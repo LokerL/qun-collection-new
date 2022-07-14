@@ -1,39 +1,49 @@
 <template>
-  <el-menu default-active="2" class="el-menu-vertical-demo">
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon><location /></el-icon>
-        <span>主机区</span>
-      </template>
-
-      <el-menu-item index="1-1">item one</el-menu-item>
-      <el-menu-item index="1-2">item two</el-menu-item>
-      <el-menu-item index="1-3">item three</el-menu-item>
-
-      <el-menu-item index="1-4-1">item one</el-menu-item>
-    </el-sub-menu>
-  </el-menu>
+  <div class="qun-menu">
+    <template v-for="(p, index) in config.zhuboList" :key="p">
+      <el-row>
+        <el-badge :value="p.name" type="primary">
+          <el-avatar
+            :shape="config.shape"
+            :size="config.size"
+            :src="p.avatar"
+            :class="{ active: currentTab === index }"
+            @click="avatarClick(index)"
+          />
+        </el-badge>
+      </el-row>
+    </template>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { config } from "../config/qunMenuConfig";
+let currentTab = ref(0);
+function avatarClick(index) {
+  console.log(index);
+  currentTab.value = index;
+}
+</script>
 
+<style scoped>
+.qun-menu {
+  width: 100%;
+}
+.el-row {
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.el-avatar {
+  border-radius: 8px;
+}
+.el-avatar.active {
+  border: 1px solid #409eff;
+}
+</style>
 <style>
-.el-menu-vertical-demo {
-  background-color: transparent !important;
-}
-.el-menu-vertical-demo > * {
-  background-color: transparent !important;
-}
-.el-sub-menu {
-  width: 7vw;
-}
-.el-menu-item {
-  min-width: 100% !important;
-}
-.el-sub-menu .el-menu {
-  background-color: unset !important;
-}
-ul.el-menu.el-menu--inline {
-  background-color: unset !important;
+.el-badge__content.is-fixed {
+  transform: translateY(-50%) translateX(70%) !important;
 }
 </style>

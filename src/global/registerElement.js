@@ -1,10 +1,13 @@
 import {
   ElAvatar,
+  ElBadge,
+  ElCard,
   ElCol,
   ElContainer,
   ElDropdown,
   ElHeader,
   ElIcon,
+  ElImage,
   ElMain,
   ElMenu,
   ElMenuItem,
@@ -13,7 +16,9 @@ import {
   ElRadioGroup,
   ElRow,
   ElScrollbar,
+  ElSpace,
   ElTable,
+  ElTag,
 } from "element-plus";
 import "element-plus/dist/index.css";
 import "element-plus/theme-chalk/display.css";
@@ -25,21 +30,18 @@ const components = [
   ElContainer.Main,
   ElContainer.Aside,
   ElScrollbar,
-  ElMenu,
-  ElMenu.MenuItem,
-  ElMenu.MenuItemGroup,
-  ElMenu.SubMenu,
   ElDropdown,
   ElDropdown.DropdownItem,
   ElDropdown.DropdownMenu,
-  ElTable,
-  ElTable.TableColumn,
   ElIcon,
   ElRow,
   ElCol,
   ElAvatar,
-  ElRadioGroup,
-  ElRadioButton,
+  ElBadge,
+  ElSpace,
+  ElCard,
+  ElImage,
+  ElTag,
 ];
 
 export default function (app) {

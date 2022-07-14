@@ -13,7 +13,7 @@
   </el-container> -->
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import QunHeader from "../components/QunHeader.vue";
 import QunMenu from "../components/QunMenu.vue";
 import QunContent from "../components/QunContent.vue";
