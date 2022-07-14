@@ -17,12 +17,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { config } from "../config/qunMenuConfig";
 let currentTab = ref(0);
 let width = document.body.clientWidth;
 function avatarClick(index) {
-  console.log(index);
   currentTab.value = index;
 }
 

@@ -8,6 +8,7 @@ import {
   ElHeader,
   ElIcon,
   ElImage,
+  ElInput,
   ElMain,
   ElMenu,
   ElMenuItem,
@@ -42,6 +43,7 @@ const components = [
   ElCard,
   ElImage,
   ElTag,
+  ElInput,
 ];
 
 export default function (app) {

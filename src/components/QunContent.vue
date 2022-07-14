@@ -1,15 +1,21 @@
 <template>
-  <el-scrollbar class="qun-content">
+  <!-- <el-scrollbar class="qun-content">
     <el-row :gutter="1" style="justify-content: left" class="grid-content">
       <div class="leftside"><qun-menu></qun-menu></div>
       <div class="content">
         <qun-card></qun-card>
       </div>
-      <!-- <div class="rightside">
-        <div class="ep-bg-purple" />
-      </div> -->
     </el-row>
-  </el-scrollbar>
+  </el-scrollbar> -->
+
+  <div class="qun-content">
+    <el-row :gutter="1" style="justify-content: left" class="grid-content">
+      <div class="leftside"><qun-menu></qun-menu></div>
+      <div class="content">
+        <qun-card></qun-card>
+      </div>
+    </el-row>
+  </div>
 </template>
 
 <script setup>
