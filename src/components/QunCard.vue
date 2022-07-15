@@ -62,14 +62,16 @@ const { appContext } = getCurrentInstance();
 
 onMounted(() => {
   appContext.config.globalProperties.$mitt.on("searchEvent", (res) => {
-    console.log(res);
+    const qun = config.qun.groups;
+    function filterItems(query) {
+      return qun.filter(function (el) {
+        return JSON.stringify(el).indexOf(query) > -1;
+      });
+    }
     if (res == "") {
       groups.value = JSON.parse(JSON.stringify(config.qun.groups));
     }
-    console.log(groups.value);
-    groups.value = groups.value.filter((item) => {
-      return String(item).includes(res);
-    });
+    groups.value = filterItems(res);
   });
 });
 
@@ -91,6 +93,7 @@ onBeforeMount(() => {
   margin: 10px 10px;
   border-radius: 8px;
   max-width: 200px;
+  max-height: 350px;
 }
 .group-name {
   margin: 0;

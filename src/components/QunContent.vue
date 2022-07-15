@@ -1,13 +1,4 @@
 <template>
-  <!-- <el-scrollbar class="qun-content">
-    <el-row :gutter="1" style="justify-content: left" class="grid-content">
-      <div class="leftside"><qun-menu></qun-menu></div>
-      <div class="content">
-        <qun-card></qun-card>
-      </div>
-    </el-row>
-  </el-scrollbar> -->
-
   <div class="qun-content">
     <el-row :gutter="1" style="justify-content: left" class="grid-content">
       <div class="leftside"><qun-menu></qun-menu></div>

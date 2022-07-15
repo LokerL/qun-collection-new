@@ -1,16 +1,16 @@
 <template>
   <el-header style="text-align: center; font-size: 12px">
     <div class="toolbar">
-      <el-avatar shape="square" :src="sidebarLogo" />
+      <!-- <el-avatar shape="square" :src="sidebarLogo" /> -->
       <el-input
         class="inputDeep"
-        placeholder="Please Input"
+        placeholder="输入检索内容"
         suffix-icon="Search"
         :clearable="true"
         v-model="searchValue"
         @input="inputFn"
       />
-      <div class="content">
+      <!-- <div class="content">
         <el-dropdown>
           <el-icon class="header-icon"><setting /></el-icon>
           <template #dropdown>
@@ -22,7 +22,7 @@
           </template>
         </el-dropdown>
         <span>Tom</span>
-      </div>
+      </div> -->
     </div>
   </el-header>
 </template>
@@ -31,7 +31,7 @@
 import logo from "../assets/logo.png";
 import { ref, getCurrentInstance } from "vue";
 const sidebarLogo = ref(logo);
-const searchValue = ref("12");
+const searchValue = ref("");
 const { appContext } = getCurrentInstance();
 const inputFn = () => {
   appContext.config.globalProperties.$mitt.emit(
@@ -57,7 +57,7 @@ const inputFn = () => {
   z-index: 9999;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   right: 40px;
 }
