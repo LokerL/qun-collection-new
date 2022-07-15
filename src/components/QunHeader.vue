@@ -75,9 +75,10 @@ const inputFn = () => {
 .el-input {
   width: 30vw;
   background-color: rgba(255, 255, 255, 0.6) !important;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 :deep(.el-input__wrapper) {
   background-color: unset !important;
+  border-radius: 16px;
 }
 </style>

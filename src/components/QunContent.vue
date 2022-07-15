@@ -35,6 +35,8 @@ import QunCard from "./QunCard.vue";
   background: rgba(246, 247, 246, 0.4);
   scroll-behavior: smooth;
   overscroll-behavior: contain;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 .rightside {
   width: 7vw;
