@@ -1,6 +1,8 @@
 import {
   ElAvatar,
   ElBadge,
+  ElButton,
+  ElButtonGroup,
   ElCard,
   ElCol,
   ElContainer,
@@ -44,6 +46,8 @@ const components = [
   ElImage,
   ElTag,
   ElInput,
+  ElButton,
+  ElButtonGroup,
 ];
 
 export default function (app) {

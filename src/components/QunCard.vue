@@ -6,11 +6,20 @@
         :key="group"
         :body-style="{ padding: '0px' }"
       >
-        <el-image
-          :src="imgUrl(group.id)"
-          fit="fill"
-          style="width: 200px; height: 200px"
-        />
+        <div>
+          <el-image
+            :src="imgUrl(group.id)"
+            fit="fill"
+            style="width: 200px; height: 200px"
+          />
+          <div class="btn-group" style="width: 200px">
+            <el-button-group>
+              <el-button type="info">复制群号</el-button>
+              <el-button type="info">一键加群</el-button>
+            </el-button-group>
+          </div>
+        </div>
+
         <div style="padding: 5px 10px">
           <h4 class="group-name">{{ group.name }}</h4>
           <div direction="vertical">
@@ -104,5 +113,23 @@ onBeforeMount(() => {
 .group-info {
   font-size: 10px;
   color: #999;
+}
+.btn-group {
+  position: relative;
+  top: -36px;
+  z-index: 999;
+  height: 0;
+}
+.el-button {
+  width: 100px;
+  border-radius: 0;
+  opacity: 0;
+}
+.el-card:hover .el-button {
+  transition: opacity 0.3s ease-in;
+  -moz-transition: opacity 0.3s ease-in; /* Firefox 4 */
+  -webkit-transition: opacity 0.3s ease-in; /* Safari 和 Chrome */
+  -o-transition: opacity 0.3s ease-in; /* Opera */
+  opacity: 0.9;
 }
 </style>
