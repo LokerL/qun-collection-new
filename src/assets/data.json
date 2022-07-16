@@ -17,7 +17,7 @@
     {
       "id": "746340473",
       "join_link": "https://qm.qq.com/cgi-bin/qm/qr?k=Ir9Q7QJxPhXmy1Jc7a0r2VvAEgTJ5fCo&jump_from=webapi",
-      "name": "开播提醒2群_全员禁言",
+      "name": "开播提醒2群_禁言",
       "num": "10+/1000",
       "owner": "三上悠寅",
       "description": "【禁言群】内附开播提醒和更换标提醒。",
@@ -74,9 +74,48 @@
       ]
     },
     {
+      "id": "675370812",
+      "join_link": "",
+      "name": "CSTG开播提醒通知“1”群",
+      "num": "",
+      "owner": "Sal三文鱼mon",
+      "description": "群内机器人提供开播提醒，标题、微博、B站，等功能齐全. ～",
+      "tag": [
+        "开播提醒",
+        "机器人",
+        "游戏交流"
+      ]
+    },
+    {
+      "id": "160056476",
+      "join_link": "",
+      "name": "CSTG开播提醒通知“2”群",
+      "num": "",
+      "owner": "Sal三文鱼mon",
+      "description": "群内机器人提供开播提醒，标题、微博、B站，等功能齐全. ～",
+      "tag": [
+        "开播提醒",
+        "机器人",
+        "游戏交流"
+      ]
+    },
+    {
+      "id": "786240623",
+      "join_link": "",
+      "name": "CSTG开播提醒通知“3”群",
+      "num": "",
+      "owner": "Sal三文鱼mon",
+      "description": "群内机器人提供开播提醒，标题、微博、B站，等功能齐全. ～",
+      "tag": [
+        "开播提醒",
+        "机器人",
+        "游戏交流"
+      ]
+    },
+    {
       "id": "1001844387",
       "join_link": "https://qm.qq.com/cgi-bin/qm/qr?k=oIPdI9JFiwR4L9kPltWo2YDb29sZc8pF&jump_from=webapi",
-      "name": "开播提醒群_全员禁言",
+      "name": "开播提醒群",
       "num": "1000+/1000",
       "owner": "三上悠寅",
       "description": "【禁言群】内附开播提醒和更换标提醒。",
@@ -141,20 +180,6 @@
         "游戏交流",
         "满"
       ]
-    }
-  ],
-  "qun": [
-    {
-      "id": "675370812",
-      "name": "CSTG开播提醒通知1群"
-    },
-    {
-      "id": "160056476",
-      "name": "CSTG开播提醒通知2群"
-    },
-    {
-      "id": "786240623",
-      "name": "CSTG开播提醒通知3群"
     }
   ],
   "tag": [

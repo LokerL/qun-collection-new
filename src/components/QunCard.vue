@@ -18,8 +18,12 @@
                 ><el-icon><DocumentCopy /></el-icon>复制群号</el-button
               >
 
-              <el-button type="info"
-                ><el-link :href="group.join_link" target="_blank"
+              <el-button type="info" :disabled="group.join_link == ''"
+                ><el-link
+                  :href="group.join_link"
+                  target="_blank"
+                  :disabled="group.join_link == ''"
+                  :underline="false"
                   ><el-icon><Promotion /></el-icon>一键加群</el-link
                 ></el-button
               >
@@ -46,9 +50,9 @@
                 {{ item }}
               </el-tag>
             </div>
-            <div class="group-info">
+            <el-scrollbar class="group-info">
               <el-icon><ChatDotSquare /></el-icon>{{ group.description }}
-            </div>
+            </el-scrollbar>
           </div>
         </div>
       </el-card>
@@ -134,8 +138,9 @@ onBeforeMount(() => {
   margin: 0;
 }
 .group-info {
-  font-size: 10px;
-  color: #999;
+  font-size: 14px;
+  color: #73767a;
+  height: 72px;
 }
 .btn-group {
   position: relative;
