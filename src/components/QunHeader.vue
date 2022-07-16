@@ -12,7 +12,9 @@
       />
       <div class="content">
         <el-dropdown>
-          <el-icon class="header-icon" color="#909399"><SetUp /></el-icon>
+          <p>
+            <el-icon class="header-icon" color="#909399"><SetUp /></el-icon>功能
+          </p>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item>
@@ -82,6 +84,10 @@ const inputFn = () => {
   align-items: center;
   position: absolute;
   right: 5%;
+}
+.content p {
+  display: flex;
+  align-items: center;
 }
 .el-input {
   width: 30vw;
