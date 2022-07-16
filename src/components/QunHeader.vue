@@ -10,27 +10,36 @@
         v-model="searchValue"
         @input="inputFn"
       />
-      <!-- <div class="content">
+      <div class="content">
         <el-dropdown>
-          <el-icon class="header-icon"><setting /></el-icon>
+          <el-icon class="header-icon" color="#909399"><SetUp /></el-icon>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>View</el-dropdown-item>
-              <el-dropdown-item>Add</el-dropdown-item>
-              <el-dropdown-item>Delete</el-dropdown-item>
+              <el-dropdown-item>
+                <el-link
+                  href="https://docs.qq.com/form/page/DRE9XekdtTXprbEtD"
+                  target="_blank"
+                  ><el-icon><EditPen /></el-icon>添加/修改</el-link
+                > </el-dropdown-item
+              ><el-dropdown-item>
+                <el-link
+                  href="https://docs.qq.com/sheet/DREFpblZndGxLdHBS?tab=BB08J2&u=a000c91a4a1c4ce1825768ba5e78f4c0&viewId=fv1"
+                  target="_blank"
+                  ><el-icon><Document /></el-icon>查看提交信息</el-link
+                >
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-        <span>Tom</span>
-      </div> -->
+      </div>
     </div>
   </el-header>
 </template>
 
 <script setup>
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 import { ref, getCurrentInstance } from "vue";
-const sidebarLogo = ref(logo);
+// const sidebarLogo = ref(logo);
 const searchValue = ref("");
 const { appContext } = getCurrentInstance();
 const inputFn = () => {
@@ -71,6 +80,8 @@ const inputFn = () => {
 .content {
   display: flex;
   align-items: center;
+  position: absolute;
+  right: 5%;
 }
 .el-input {
   width: 30vw;

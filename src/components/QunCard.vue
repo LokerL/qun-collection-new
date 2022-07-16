@@ -14,8 +14,15 @@
           />
           <div class="btn-group" style="width: 200px">
             <el-button-group>
-              <el-button type="info">复制群号</el-button>
-              <el-button type="info">一键加群</el-button>
+              <el-button type="info" @click="copyGroupId(group.id)"
+                ><el-icon><DocumentCopy /></el-icon>复制群号</el-button
+              >
+
+              <el-button type="info"
+                ><el-link :href="group.join_link" target="_blank"
+                  ><el-icon><Promotion /></el-icon>一键加群</el-link
+                ></el-button
+              >
             </el-button-group>
           </div>
         </div>
@@ -51,6 +58,7 @@
 
 <script setup>
 import { config } from "../config/qunCardConfig";
+import { ElMessage } from "element-plus";
 import {
   ref,
   computed,
@@ -68,6 +76,21 @@ function typeCale(name) {
 }
 
 const { appContext } = getCurrentInstance();
+
+const copyGroupId = (id) => {
+  var input = document.createElement("input"); // 创建input对象
+  input.value = id; // 设置复制内容
+  document.body.appendChild(input); // 添加临时实例
+  input.select(); // 选择实例内容
+  document.execCommand("Copy"); // 执行复制
+  document.body.removeChild(input); // 删除临时实例
+  ElMessage({
+    dangerouslyUseHTMLString: true,
+    message: `<strong>复制成功：群号 <i>${id}</i></strong>`,
+    type: "success",
+    duration: 1500,
+  });
+};
 
 onMounted(() => {
   appContext.config.globalProperties.$mitt.on("searchEvent", (res) => {
@@ -131,5 +154,8 @@ onBeforeMount(() => {
   -webkit-transition: opacity 0.3s ease-in; /* Safari 和 Chrome */
   -o-transition: opacity 0.3s ease-in; /* Opera */
   opacity: 0.9;
+}
+.el-link {
+  color: var(--el-color-white);
 }
 </style>
