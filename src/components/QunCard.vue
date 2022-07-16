@@ -133,6 +133,9 @@ onBeforeMount(() => {
 }
 .group-name {
   margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .group-owner {
   margin: 0;
@@ -140,7 +143,7 @@ onBeforeMount(() => {
 .group-info {
   font-size: 14px;
   color: #73767a;
-  height: 72px;
+  height: 60px;
 }
 .btn-group {
   position: relative;
