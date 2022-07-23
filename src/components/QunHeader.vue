@@ -33,6 +33,7 @@
             </el-dropdown-menu>
           </template>
         </el-dropdown>
+        <yin-event></yin-event>
       </div>
     </div>
   </el-header>
@@ -41,6 +42,7 @@
 <script setup>
 // import logo from "../assets/logo.png";
 import { ref, getCurrentInstance } from "vue";
+import YinEvent from "./YinEvent.vue";
 // const sidebarLogo = ref(logo);
 const searchValue = ref("");
 const { appContext } = getCurrentInstance();
@@ -75,9 +77,12 @@ const inputFn = () => {
 .header-icon {
   font-size: 20px;
   cursor: pointer;
+  margin-left: 15px;
 }
 .toolbar .content {
-  font-size: 20px;
+  color: var(--el-text-color-regular);
+  font-size: var(--el-font-size-base);
+  line-height: 1;
 }
 .content {
   display: flex;
