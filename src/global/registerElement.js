@@ -6,7 +6,10 @@ import {
   ElCard,
   ElCol,
   ElContainer,
+  ElDialog,
   ElDropdown,
+  ElForm,
+  ElFormItem,
   ElHeader,
   ElIcon,
   ElImage,
@@ -50,6 +53,9 @@ const components = [
   ElButton,
   ElButtonGroup,
   ElLink,
+  ElDialog,
+  ElForm,
+  ElFormItem,
 ];
 
 export default function (app) {

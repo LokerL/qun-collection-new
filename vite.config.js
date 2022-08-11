@@ -8,4 +8,12 @@ export default defineConfig({
   build: {
     minify: "terser", // 混淆器，terser构建后文件体积更小
   },
+  css: {
+    // css预处理器
+    preprocessorOptions: {
+      less: {
+        preProcessor: "less",
+      },
+    },
+  },
 });

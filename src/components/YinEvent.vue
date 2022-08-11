@@ -62,7 +62,7 @@ const showEvent = () => {
   line-height: 1;
   font-size: 13px;
   cursor: pointer;
-  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .yin-event .header-icon {

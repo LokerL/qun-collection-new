@@ -11,7 +11,7 @@
         @input="inputFn"
       />
       <div class="content">
-        <el-dropdown>
+        <!-- <el-dropdown>
           <p>
             <el-icon class="header-icon" color="#909399"><SetUp /></el-icon>功能
           </p>
@@ -32,8 +32,9 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </template>
-        </el-dropdown>
+        </el-dropdown> -->
         <yin-event></yin-event>
+        <Login></Login>
       </div>
     </div>
   </el-header>
@@ -43,6 +44,7 @@
 // import logo from "../assets/logo.png";
 import { ref, getCurrentInstance } from "vue";
 import YinEvent from "./YinEvent.vue";
+import Login from "./Login.vue";
 // const sidebarLogo = ref(logo);
 const searchValue = ref("");
 const { appContext } = getCurrentInstance();
@@ -86,6 +88,7 @@ const inputFn = () => {
 }
 .content {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   position: absolute;
   right: 5%;
