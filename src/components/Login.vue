@@ -7,16 +7,13 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 import { useStore } from "../store/store";
 import { storeToRefs } from "pinia";
 
 const { loginInfo } = storeToRefs(useStore());
 
 const dialogFormVisible = ref(false);
-const form = reactive({
-  name: "",
-});
 </script>
 
 <style lang="less" scoped>
