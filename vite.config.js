@@ -17,4 +17,18 @@ export default defineConfig({
     },
   },
   define: { "process.env": {} },
+  server: {
+    proxy: {
+      "/ip": {
+        target: "http://pv.sohu.com/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ip/, ""),
+      },
+      "/qq": {
+        target: "https://r.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/qq/, ""),
+      },
+    },
+  },
 });

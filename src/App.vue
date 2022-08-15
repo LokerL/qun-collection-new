@@ -1,6 +1,17 @@
 <script setup>
 import QunPage from "./views/QunPage.vue";
 import LoginPage from "./views/LoginPage.vue";
+import axios from "axios";
+import { storeToRefs } from "pinia";
+import { useStore } from "./store/store";
+
+const store = useStore();
+const { ip, regInfo } = storeToRefs(store);
+axios.get("ip/cityjson?ie=utf-8").then((res) => {
+  var json = new Function("return " + res.data.split("=")[1])();
+  ip.value = json["cip"];
+  regInfo.value.ip = json["cip"];
+});
 </script>
 
 <template>

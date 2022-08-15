@@ -121,7 +121,7 @@
         </div>
         <div class="field action-field">
           <button class="button" @click.prevent="register">注册</button>
-          <span class="action-span" @click="deactive">立即登录</span>
+          <span class="action-span" @click="deactive">立即登录 {{ str }}</span>
         </div>
       </form>
     </el-dialog>
@@ -130,8 +130,12 @@
 
 <script setup>
 import { ref } from "vue";
+import axios from "axios";
 import { useStore } from "../store/store";
 import { storeToRefs } from "pinia";
+import { ElNotification } from "element-plus";
+
+const str = ref("");
 
 const store = useStore();
 const { loginInfo, regInfo } = storeToRefs(store);
@@ -142,6 +146,57 @@ const login = () => {
 };
 
 const register = () => {
+  const validationUsername = /^(?=.*[0-9])(?=.*[a-zA-Z])(.{6,})$/;
+  const validationPwd = /^(?=.*[0-9])(?=.*[a-zA-Z])(.{8,})$/;
+  const qqPattern = /^[1-9][0-9]{4,10}$/;
+  if (!validationUsername.test(regInfo.value.username)) {
+    ElNotification({
+      title: "注册失败",
+      message: "账号为字母+数字组合且不能小于6位!",
+      type: "warning",
+    });
+    return;
+  }
+  if (!qqPattern.test(regInfo.value.qq)) {
+    // https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=806076693
+
+    ElNotification({
+      title: "注册失败",
+      message: "QQ号不正确!",
+      type: "warning",
+    });
+    return;
+  }
+  if (!validationPwd.test(regInfo.value.password)) {
+    axios
+      .get("/qq?uins=" + regInfo.value.qq, {
+        responseEncoding: "gbk",
+        responseType: "json", // 默认值
+      })
+
+      .then((res) => {
+        console.log(res);
+        let json = res.data.replace("portraitCallBack(", "").slice(0, -1);
+        json = JSON.parse(json);
+        str.value = json[regInfo.value.qq][6];
+        // console.log(html);
+      });
+    ElNotification({
+      title: "注册失败",
+      message: "密码为字母+数字组合且不能小于8位!",
+      type: "warning",
+    });
+    return;
+  }
+  if (!(regInfo.value.password === regInfo.value.confirmPassword)) {
+    ElNotification({
+      title: "注册失败",
+      message: "密码和重复密码不一致！",
+      type: "warning",
+    });
+    return;
+  }
+
   store.register();
 };
 
