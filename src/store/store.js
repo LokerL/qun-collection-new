@@ -10,6 +10,11 @@ export const useStore = defineStore("qunStore", {
       // 所有这些属性都将自动推断其类型
       loading: false,
       ip: "",
+      userInfo: {
+        nickname: "",
+        qq: "",
+        groups: [],
+      },
       loginInfo: {
         username: "",
         password: "",

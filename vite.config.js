@@ -25,7 +25,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/ip/, ""),
       },
       "/qq": {
-        target: "https://r.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg",
+        target: "https://api.lixingyong.com/api/qq",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/qq/, ""),
       },

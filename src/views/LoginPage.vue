@@ -157,30 +157,17 @@ const register = () => {
     });
     return;
   }
-  if (!qqPattern.test(regInfo.value.qq)) {
-    // https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=806076693
 
-    ElNotification({
-      title: "注册失败",
-      message: "QQ号不正确!",
-      type: "warning",
-    });
-    return;
-  }
+  // if (!qqPattern.test(regInfo.value.qq)) {
+  //   // https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=806076693
+  //   ElNotification({
+  //     title: "注册失败",
+  //     message: "QQ号不正确!",
+  //     type: "warning",
+  //   });
+  //   return;
+  // }
   if (!validationPwd.test(regInfo.value.password)) {
-    axios
-      .get("/qq?uins=" + regInfo.value.qq, {
-        responseEncoding: "gbk",
-        responseType: "json", // 默认值
-      })
-
-      .then((res) => {
-        console.log(res);
-        let json = res.data.replace("portraitCallBack(", "").slice(0, -1);
-        json = JSON.parse(json);
-        str.value = json[regInfo.value.qq][6];
-        // console.log(html);
-      });
     ElNotification({
       title: "注册失败",
       message: "密码为字母+数字组合且不能小于8位!",
@@ -196,8 +183,24 @@ const register = () => {
     });
     return;
   }
-
-  store.register();
+  axios
+    .get("/qq", {
+      params: {
+        id: regInfo.value.qq,
+      },
+    })
+    .then((res) => {
+      if (res.data.code === 500) {
+        ElNotification({
+          title: "注册失败",
+          message: res.data.msg,
+          type: "warning",
+        });
+      } else {
+        str.value = res.data.nickname;
+        store.register();
+      }
+    });
 };
 
 const regActive = ref(false);
