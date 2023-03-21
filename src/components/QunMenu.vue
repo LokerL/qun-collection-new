@@ -1,14 +1,14 @@
 <template>
   <div class="qun-menu">
-    <template v-for="(p, index) in config.zhuboList" :key="p">
+    <template v-for="p in roomList" :key="p">
       <el-row>
-        <el-badge :value="p.name" type="primary">
+        <el-badge :value="p.num" type="primary">
           <el-avatar
-            :shape="config.shape"
+            shape="square"
             :src="p.avatar"
             :size="size"
-            :class="{ active: currentTab === index }"
-            @click="avatarClick(index)"
+            :class="{ active: currentTab === p.room_id }"
+            @click="avatarClick(p.room_id)"
           />
         </el-badge>
       </el-row>
@@ -17,11 +17,23 @@
 </template>
 
 <script setup>
-import { ref, inject } from "vue";
-import { config } from "../config/qunMenuConfig";
+import { ref, getCurrentInstance, inject, onMounted } from "vue";
+import { getRooms, getGroupsCountByRoomId } from "../db";
+
+let roomList = ref([]);
+const { appContext } = getCurrentInstance();
+onMounted(async () => {
+  getRooms().then(async (res) => {
+    roomList.value = res;
+  });
+});
+
 let currentTab = ref(0);
 let width = document.body.clientWidth;
+
 function avatarClick(index) {
+  history.pushState(null, null, index);
+  appContext.config.globalProperties.currRoomId.value = index;
   currentTab.value = index;
 }
 
@@ -48,7 +60,7 @@ if (width < 1000) {
   border-radius: 8px;
 }
 .el-avatar.active {
-  border: 1px solid #409eff;
+  border: 5px solid #409eff;
 }
 </style>
 <style>

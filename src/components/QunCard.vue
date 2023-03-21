@@ -8,13 +8,13 @@
       >
         <div>
           <el-image
-            :src="imgUrl(group.id)"
+            :src="imgUrl(group.qun_id)"
             fit="fill"
             style="width: 200px; height: 200px"
           />
           <div class="btn-group" style="width: 200px">
             <el-button-group>
-              <el-button type="info" @click="copyGroupId(group.id)"
+              <el-button type="info" @click="copyGroupId(group.qun_id)"
                 ><el-icon><DocumentCopy /></el-icon>复制群号</el-button
               >
 
@@ -32,26 +32,26 @@
         </div>
 
         <div style="padding: 5px 10px">
-          <h4 class="group-name">{{ group.name }}</h4>
+          <h4 class="group-name">{{ group.qun_name }}</h4>
           <div direction="vertical">
             <h6 class="group-owner">
-              <el-icon><Avatar /></el-icon>{{ group.owner }}
+              <el-icon><Avatar /></el-icon>{{ group.qun_owner }}
             </h6>
             <div class="tags">
               <el-tag
-                v-for="item in group.tag"
+                v-for="item in group.qun_tag"
                 :key="item"
-                :type="typeCale(item).type"
+                :type="getType(item).type"
                 class="mx-1"
                 size="small"
-                :effect="typeCale(item).effect"
+                :effect="getType(item).effect"
                 round
               >
                 {{ item }}
               </el-tag>
             </div>
             <el-scrollbar class="group-info">
-              <el-icon><ChatDotSquare /></el-icon>{{ group.description }}
+              <el-icon><ChatDotSquare /></el-icon>{{ group.qun_description }}
             </el-scrollbar>
           </div>
         </div>
@@ -61,25 +61,57 @@
 </template>
 
 <script setup>
-import { config } from "../config/qunCardConfig";
 import { ElMessage } from "element-plus";
+import { getGroupsByRoomId, getTags } from "../db";
 import {
   ref,
+  watch,
   computed,
   getCurrentInstance,
   onBeforeMount,
   onMounted,
 } from "vue";
 
-let groups = ref(JSON.parse(JSON.stringify(config.qun.groups)));
+let tags;
+const defaultTag = [
+  {
+    name: "开播提醒",
+    type: "",
+    effect: "dark",
+  },
+  {
+    name: "机器人",
+    type: "success",
+    effect: "dark",
+  },
+  {
+    name: "游戏交流",
+    type: "warning",
+    effect: "dark",
+  },
+  {
+    name: "禁言",
+    type: "info",
+    effect: "dark",
+  },
+  {
+    name: "满",
+    type: "danger",
+    effect: "dark",
+  },
+];
+let groups = ref([]);
+
 function imgUrl(id) {
   return "http://p.qlogo.cn/gh/" + id + "/" + id + "/0";
 }
-function typeCale(name) {
-  return config.qun.tag.find((item) => item.name === name);
-}
 
 const { appContext } = getCurrentInstance();
+const globalProperties = appContext.config.globalProperties;
+
+watch(globalProperties.currRoomId, (newVal, oldVal) => {
+  initGroups();
+});
 
 const copyGroupId = (id) => {
   var input = document.createElement("input"); // 创建input对象
@@ -96,16 +128,29 @@ const copyGroupId = (id) => {
   });
 };
 
+const initGroups = () => {
+  getGroupsByRoomId(globalProperties.currRoomId.value).then((res) => {
+    groups.value = res;
+  });
+};
+const initTags = () => {
+  getTags().then((res) => {
+    tags = res;
+  });
+};
+
 onMounted(() => {
-  appContext.config.globalProperties.$mitt.on("searchEvent", (res) => {
-    const qun = config.qun.groups;
+  initGroups();
+  initTags();
+  globalProperties.$mitt.on("searchEvent", (res) => {
+    const qun = groups.value;
     function filterItems(query) {
       return qun.filter(function (el) {
         return JSON.stringify(el).indexOf(query) > -1;
       });
     }
     if (res == "") {
-      groups.value = JSON.parse(JSON.stringify(config.qun.groups));
+      initGroups();
     }
     groups.value = filterItems(res);
   });
@@ -114,6 +159,14 @@ onMounted(() => {
 onBeforeMount(() => {
   appContext.config.globalProperties.$mitt.off("searchEvent");
 });
+
+function getType(name) {
+  if (tags) {
+    return tags.find((item) => item.name === name);
+  } else {
+    return defaultTag.find((item) => item.name === name);
+  }
+}
 </script>
 
 <style scoped>
