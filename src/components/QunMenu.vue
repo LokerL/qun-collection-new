@@ -19,20 +19,20 @@
 <script setup>
 import { ref, getCurrentInstance, inject, onMounted } from "vue";
 import { getRooms, getGroupsCountByRoomId } from "../db";
-
+let currentTab = ref(0);
 let roomList = ref([]);
 const { appContext } = getCurrentInstance();
 onMounted(async () => {
+  currentTab.value = appContext.config.globalProperties.currRoomId.value;
   getRooms().then(async (res) => {
     roomList.value = res;
   });
 });
 
-let currentTab = ref(0);
 let width = document.body.clientWidth;
 
 function avatarClick(index) {
-  history.pushState(null, null, index);
+  history.pushState(null, null, "#" + index);
   appContext.config.globalProperties.currRoomId.value = index;
   currentTab.value = index;
 }
