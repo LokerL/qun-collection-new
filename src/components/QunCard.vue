@@ -8,7 +8,7 @@
       >
         <div>
           <el-image
-            :src="imgUrl(group.qun_id)"
+            :src="imgUrl(group)"
             fit="fill"
             style="width: 200px; height: 200px"
           />
@@ -102,7 +102,11 @@ const defaultTag = [
 ];
 let groups = ref([]);
 
-function imgUrl(id) {
+function imgUrl(group) {
+  const id = group.qun_id;
+  if (!/^\d+$/.test(id)) {
+    return group.join_link;
+  }
   return "http://p.qlogo.cn/gh/" + id + "/" + id + "/0";
 }
 
